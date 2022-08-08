@@ -24,6 +24,12 @@ export const MSG_ERROR_NUMBERING_RUN = "Возникла ошибка при з�
 export const DEFAULT_DATE_FORMAT = "DD.MM.YYYY";
 export const DEFAULT_DATETIME_FORMAT= "DD.MM.YYYY HH:mm";
 
+// Адрес системы
+export const startURL = "http://localhost:8081/";
+// Адрес url для swagger
+export const swaggerURI = "swagger-ui.html";
+
+
 export const DEBOUNCE_TIMEOUT = 500;
 
 export const DEFAULT_TABLE_CONTEXT = { isLoading: () => false, getSelectedRows: () => [] };

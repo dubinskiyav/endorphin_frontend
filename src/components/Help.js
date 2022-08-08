@@ -3,7 +3,7 @@ import App from './App';
 import ModuleHeader from "./lib/ModuleHeader";
 import { withRouter } from "react-router";
 
-const MOD_TITLE = "Кратная справка";
+const MOD_TITLE = "Краткая справка";
 
 const Error = (props)=>{
   return (

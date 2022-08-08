@@ -28,6 +28,8 @@ import { DesktopOrTabletScreen, MobileScreen, setMobile } from './lib/Responsive
 import { useMediaQuery } from 'react-responsive'
 import { RESOURCE_PRINTFORM, RESOURCE_NUMBERING, RESOURCE_ATTRIBUTE, RESOURCE_CONSTANT } from "./lib/CapResourceType";
 
+import * as globalSettings from "./lib/Const";
+
 const CONTOUR = CONTOUR_ADMIN;
 const MODULE = MODULE_CREDENTIAL;
 const ENTITY = "Proguser";
@@ -177,7 +179,15 @@ const getSubMenu = (sys, clsMenuName) => {
             </SubMenu>
         );
     }
-    
+    menuItems.push(
+        <SubMenu key={'Помощь'} title={'Помощь'} icon={CONTOUR_ADMIN.icon}>
+            <Menu.Item key="swagge">
+            <a href={globalSettings.startURL + globalSettings.swaggerURI} target="_blank" rel="noopener noreferrer">
+                Документация API
+            </a>
+            </Menu.Item>
+         </SubMenu>
+    );
     return menuItems;
 }
 
