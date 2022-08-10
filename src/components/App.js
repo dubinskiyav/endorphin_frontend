@@ -121,6 +121,9 @@ const getSubMenu = (sys, clsMenuName) => {
                         <Menu.Item key={MODULE_CREDENTIAL.name + ".sm2"} >
                             <Link to="/accessrole">Роли</Link>
                         </Menu.Item>
+                        <Menu.Item key={MODULE_CREDENTIAL.name + ".sm6"} >
+                            <Link to="/accessrolerole">Роли ролей</Link>
+                        </Menu.Item>
                         <Menu.Item key={MODULE_CREDENTIAL.name + ".sm3"} >
                             <Link to="/controlobject">Права</Link>
                         </Menu.Item>

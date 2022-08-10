@@ -9,6 +9,7 @@ import Help from "./components/Help";
 import Admin from "./components/contour/Admin";
 import ProgUser from "./components/modules/admin/ProgUser";
 import AccessRole from "./components/modules/admin/AccessRole";
+import AccessRoleRole from "./components/modules/admin/AccessRoleRole";
 import ControlObject from "./components/modules/admin/ControlObject";
 import ApplicationRole from "./components/modules/admin/ApplicationRole";
 import CapResourceRole from "./components/modules/admin/CapResourceRole";
@@ -64,6 +65,7 @@ ReactDOM.render(
                 <Route exact path='/admin'><Admin /></Route>
                 <Route exact path='/proguser'><ProgUser /></Route>
                 <Route exact path='/accessrole'><AccessRole /></Route>
+                <Route exact path='/accessrolerole'><AccessRoleRole /></Route>
                 <Route exact path='/controlobject'><ControlObject /></Route>
                 <Route exact path='/applicationrole'><ApplicationRole /></Route>
                 <Route exact path='/capresourcerole'><CapResourceRole /></Route>
