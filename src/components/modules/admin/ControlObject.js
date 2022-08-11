@@ -50,13 +50,13 @@ const COLUMNS = [
         dataIndex: 'controlObjectName',
         sorter: true,
         ellipsis: true,
-        defaultSortOrder: 'ascend',
     },
     {
         title: 'Доступ',
         dataIndex: 'controlObjectRoleAccessFlag',
         render: drawBoolIcon,
         sorter: true,
+        defaultSortOrder: 'ascend',
         width: "80px",
     },
     {

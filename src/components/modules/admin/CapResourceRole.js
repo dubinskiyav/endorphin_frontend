@@ -62,7 +62,6 @@ const COLUMNS = [
         dataIndex: 'artifactName',
         sorter: true,
         ellipsis: true,
-        defaultSortOrder: 'ascend',
     },
     {
         title: 'Тип',
@@ -77,6 +76,7 @@ const COLUMNS = [
         dataIndex: 'roleAllowFlag',
         sorter: true,
         render: drawBoolIcon,
+        defaultSortOrder: 'ascend',
         width: "80px",
     }
 ]

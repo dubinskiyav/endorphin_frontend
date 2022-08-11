@@ -58,13 +58,13 @@ const COLUMNS = [
         dataIndex: 'applicationName',
         sorter: true,
         ellipsis: true,
-        defaultSortOrder: 'ascend',
     },
     {
         title: 'Доступ',
         dataIndex: 'applicationRoleAccessFlag',
         render: drawBoolIcon,
         sorter: true,
+        defaultSortOrder: 'ascend',
         width: "80px",
     },
 ]
