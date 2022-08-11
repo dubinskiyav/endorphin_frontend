@@ -78,8 +78,7 @@ const DataSelect = React.forwardRef((props, ref) => {
                 })
 
             })
-        // eslint-disable-next-line
-    }, [props.uri])
+    }, [props.uri,props.params,props.casheType,genCasheKey,getResponseFromCashe,saveResponseToCashe])
 
     const dropdownVisibleChange = React.useCallback((open) => {
         if (open && data === null) {
@@ -121,8 +120,16 @@ const DataSelect = React.forwardRef((props, ref) => {
 
     }, [dropDownFlag]);
 
+    // interface содержит методы, которые можно применять к функциональному компоненту 
+    // в стиле компонента, построенного на классах
+    if (props.interface) {
+        props.interface.getDisplayValue= val => valueNameFunc(data?data.find(d => d[props.valueName] == val):undefined)
+        props.interface.resetData = () => setData(null)
+    }     
+
     return (<div>
         <Select {...props.SelectProps}
+            value={options?undefined:null} // важная штука. очищает содержимое select при отсутвии options
             open={dropDownFlag}
             locale={{
                 emptyText: "Нет данных"
@@ -148,7 +155,7 @@ const DataSelect = React.forwardRef((props, ref) => {
                     document.removeEventListener(`click`, onClickOutside)
                 })
                 setDropDownFlag(false);
-                ref.current.focus();
+                if(ref && ref.current) ref.current.focus();
                 setPopupState({
                     visible: true,
                     x: event.clientX,
@@ -200,7 +207,8 @@ DataSelect.propTypes = {
     uri: PropTypes.string.isRequired,
     allowClear: PropTypes.bool,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    casheType: PropTypes.oneOf([CasheTypes.None, CasheTypes.SessionStorage, CasheTypes.LocalStorage])
+    casheType: PropTypes.oneOf([CasheTypes.None, CasheTypes.SessionStorage, CasheTypes.LocalStorage]),
+    interface:PropTypes.object
 }
 
 DataSelect.defaultProps = {
@@ -238,5 +246,35 @@ DataSelect.CapClassSelect = React.forwardRef((props, ref) => {
 DataSelect.CapClassSelect.propTypes = {
     capClassType: PropTypes.number.isRequired
 }
+
+DataSelect.AccessRoleSelect = React.forwardRef((props, ref) => {
+
+    return <DataSelect 
+        uri={"admin/credential/accessrole/getlist"}
+        params={{
+            "pagination": {
+                "current": 1,
+                "pageSize": -1
+            },
+            "sort": [
+                {
+                    "field": "accessRoleName",
+                    "order": "ascend"
+                }
+            ],
+            "filters":{
+                "onlyVisible":1
+            }
+        }}
+        valueName="accessRoleId"
+        displayValueName="accessRoleName"
+        {...props}/>
+
+});
+
+DataSelect.AccessRoleSelect.propTypes = {
+}
+
+
 
 export default DataSelect;

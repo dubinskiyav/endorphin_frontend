@@ -1,16 +1,20 @@
 import React from 'react';
-import { Form, Input, Checkbox } from 'antd';
+import { Form, Input } from 'antd';
 import { FORM_ITEMS_LAYOUT } from "../../lib/Const";
+import DataSelect from "../../lib/DataSelect"
 
 
 const AccessRoleRoleForm = (props) => {
     const firstInputRef = React.useRef(null);
+    const [accessRoleInterface] = React.useState({});
 
     React.useEffect(() => {
         setTimeout(() => {
-            firstInputRef.current.focus({
-                cursor: 'end',
-            })
+            if (firstInputRef.current) {
+                firstInputRef.current.focus({
+                    cursor: 'end',
+                })
+            }
         }, 100);
     });
 
@@ -19,61 +23,67 @@ const AccessRoleRoleForm = (props) => {
         form={props.form}
         layout="horizontal"
         name="formAccessRoleRole"
-        onFieldsChange={props.onFieldsChange}
+        onFieldsChange={(changedFields,allFields)=>{
+            /*
+            changedFields.forEach(f=>{
+                console.log("f.name[0]" + f.name[0]);
+                if(f.name[0]=="accessRoleParentId") {
+                    const val = accessRoleInterface.getDisplayValue(f.value);
+                    props.form.setFieldsValue({"accessRoleNameParent":val});
+                }
+            });
+            */
+            props.onFieldsChange();
+        }}
         initialValues={props.initialValues}>
         <Form.Item
-            name='accessRoleNameParent'
-            label='Наименование родителя'
+            name='accessRoleIdParent'
+            label='Роль'
             rules={[
-                { required: true },
-                { max: 30 }
+                { required: true }
             ]}>
-            <Input ref={firstInputRef} />
+            <DataSelect 
+                    uri={"admin/credential/accessrole/getlist"} 
+                    params={{
+                        "pagination": {
+                            "current": 1,
+                            "pageSize": -1
+                        },
+                        "sort": [
+                            {
+                                "field": "accessRoleName",
+                                "order": "ascend"
+                            }
+                        ]
+                    }}
+                    valueName="accessRoleId"
+                    displayValueName="accessRoleName" // Это поле которое выпадает в список
+                    // Значение берется из вызывающей формы из этого поля
+                    displayValue={props.initialValues["accessRoleNameParent"]} interface={accessRoleInterface}/>
         </Form.Item>
         <Form.Item
-            name='accessRoleNoteParent'
-            label='Описание родителя'
+            name='accessRoleIdChild'
+            label='Содержит'
             rules={[
-                { max: 255 }
+                { required: true }
             ]}>
-            <Input />
-        </Form.Item>
-        <Form.Item
-            name='accessRoleVisibleParent'
-            label='Видимость родителя'
-            valuePropName="checked"
-            getValueFromEvent={(event) => {
-                return event.target.checked ? 1 : 0;
-            }}
-        >
-            <Checkbox></Checkbox>
-        </Form.Item>
-        <Form.Item
-            name='accessRoleNameChild'
-            label='Наименование ребенка'
-            rules={[
-                { required: true },
-                { max: 30 }
-            ]}>
-            <Input ref={firstInputRef} />
-        </Form.Item>
-        <Form.Item
-            name='accessRoleNoteChild'
-            label='Описание ребенка'
-            rules={[
-                { max: 255 }
-            ]}>
-            <Input />
-        </Form.Item>
-        <Form.Item
-            name='accessRoleVisibleChild'
-            label='Видимость ребенка'
-            valuePropName="checked"
-            getValueFromEvent={(event) => {
-                return event.target.checked ? 1 : 0;
-            }}
-        >
-            <Checkbox></Checkbox>
+            <DataSelect 
+                    uri={"admin/credential/accessrole/getlist"} 
+                    params={{
+                        "pagination": {
+                            "current": 1,
+                            "pageSize": -1
+                        },
+                        "sort": [
+                            {
+                                "field": "accessRoleName",
+                                "order": "ascend"
+                            }
+                        ]
+                    }}
+                    valueName="accessRoleId"
+                    displayValueName="accessRoleName" // Это поле которое выпадает в список
+                    displayValue={props.initialValues["accessRoleNameChild"]} interface={accessRoleInterface}/>
         </Form.Item>
     </Form>
 }

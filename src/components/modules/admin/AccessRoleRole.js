@@ -6,7 +6,7 @@ import ModuleHeader from "../../lib/ModuleHeader";
 import { withRouter } from "react-router";
 import { BUTTON_ADD_LABEL, BUTTON_DEL_LABEL, BUTTON_REFRESH_LABEL, DEFAULT_TABLE_CONTEXT } from "../../lib/Const";
 import { MoreOutlined } from '@ant-design/icons';
-import { drawBoolIcon, buildURL } from "../../lib/Utils";
+import { buildURL } from "../../lib/Utils";
 import EditForm from "../../lib/EditForm";
 import AccessRoleRoleForm from "./AccessRoleRoleForm";
 import { CONTOUR_ADMIN, MODULE_CREDENTIAL } from "../../lib/ModuleConst"
@@ -36,7 +36,7 @@ const MNU_MENU = MODULE.name;
 const NAME_MENU = MODULE.title;
 // в submenu - key бокового подменю (финальный пункт)
 // его имя равно имени модуля
-const MNU_SUMMENU = MODULE.name + ".sm2";
+const MNU_SUMMENU = MODULE.name + ".sm6";
 // автоматическое обновление при монтировании компонента
 const AUTO_REFRESH = true;
 
@@ -50,7 +50,7 @@ const COLUMNS = [
         defaultSortOrder: 'ascend',
     },
     {
-        title: 'Главная',
+        title: 'Описание',
         dataIndex: 'accessRoleNoteParent',
         sorter: true,
         ellipsis: true,
@@ -64,7 +64,7 @@ const COLUMNS = [
         defaultSortOrder: 'ascend',
     },
     {
-        title: 'Вложенная',
+        title: 'Описание',
         dataIndex: 'accessRoleNoteChild',
         sorter: true,
         ellipsis: true,
